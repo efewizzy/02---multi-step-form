@@ -9,7 +9,7 @@ describe('FormInput', () => {
             title: 'Form Title',
             text: 'I am the Placeholder',
             type: 'text',
-            error: [],
+            error: [{$message: 'This is an error'}],
             modelValue: '',
             'onUpdate:modelValue': (e: string) => {wrapper.setProps({modelValue: e})}
         }
@@ -18,6 +18,7 @@ describe('FormInput', () => {
     it('renders properly', () => {
 
         expect(wrapper.find('h5').text()).toEqual('Form Title')
+        expect(wrapper.find('p').text()).toEqual('This is an error')
     })
 
     it('stores user input, and updates modelValue', async () => {

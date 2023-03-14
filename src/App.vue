@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
-import FirstStep from './components/FirstStep.vue';
-import SecondStep from './components/SecondStep.vue';
+import FirstStep from './components/Steps/FirstStep.vue';
+import SecondStep from './components/Steps/SecondStep.vue';
 import { ref } from 'vue';
 
 const currentStep = ref('FirstStep')

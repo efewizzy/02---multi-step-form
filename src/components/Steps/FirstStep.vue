@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import PageTitle from './PageTitle.vue';
-import FormInput from './FormInput.vue';
-import FormButton from './FormButton.vue';
+import PageTitle from '../PageTitle.vue';
+import FormInput from '../FormInput.vue';
+import FormButton from '../FormButton.vue';
 import { ref, reactive } from 'vue';
 import {useVuelidate} from '@vuelidate/core';
 import { required, helpers, email, numeric } from '@vuelidate/validators';

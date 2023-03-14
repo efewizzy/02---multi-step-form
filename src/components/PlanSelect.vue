@@ -21,7 +21,7 @@ const emits = defineEmits<{
     >
         <span><img :src="icon" alt="Arcade Icon" class="mt-2 mb-10"></span>
         <h5 class="font-bold text-xl">{{title}}</h5>
-        <p class="text-CoolGray">{{yearly ? yearlyPrice : price}}</p>
-        <p v-if="yearly" class="text-sm">2 months free</p>
+        <p data-type="test-price" class="text-CoolGray">{{yearly ? yearlyPrice : price}}</p>
+        <p data-type="test-yearly" v-if="yearly" class="text-sm">2 months free</p>
     </button>
 </template>

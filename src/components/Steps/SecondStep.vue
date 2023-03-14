@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import FormButton from './FormButton.vue';
-import FormSwitch from './FormSwitch.vue';
-import PageTitle from './PageTitle.vue';
-import PlanSelect from './PlanSelect.vue';
+import FormButton from '../FormButton.vue';
+import FormSwitch from '../FormSwitch.vue';
+import PageTitle from '../PageTitle.vue';
+import PlanSelect from '../PlanSelect.vue';
 
 const emits = defineEmits<{
     (e: 'change', value: string): void
