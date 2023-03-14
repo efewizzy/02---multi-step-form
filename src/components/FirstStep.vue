@@ -42,7 +42,6 @@ const submit = () => {
     }
     v$.value.$reset
 }
-
 </script>
 
 <template>

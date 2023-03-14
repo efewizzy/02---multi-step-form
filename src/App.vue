@@ -37,8 +37,6 @@ const navTexts = [
     step: 'FourthStep'
   },
 ]
-
-console.log(steps)
 </script>
 
 <template>
