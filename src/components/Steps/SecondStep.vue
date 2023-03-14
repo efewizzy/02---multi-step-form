@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 import FormButton from '../FormButton.vue';
 import FormSwitch from '../FormSwitch.vue';
 import PageTitle from '../PageTitle.vue';
@@ -7,6 +7,7 @@ import PlanSelect from '../PlanSelect.vue';
 
 const emits = defineEmits<{
     (e: 'change', value: string): void
+    (e: 'billing', value: boolean): void
 }>()
 
 const selectedPlan = ref('Arcade')
@@ -33,7 +34,6 @@ const plans = [
         yearlyPrice: '$150/yr'
     }
 ]
-
 </script>
 
 <template>
@@ -52,7 +52,7 @@ const plans = [
         </div>
         <div class="mt-10 p-2 flex flex-row justify-center items-center bg-Magnolia">
             <span :class="billing ? 'text-CoolGray font-bold' : 'font-bold' ">Monthly</span>
-            <span class="mx-5 mt-2"><FormSwitch v-model="billing" /></span>
+            <span class="mx-5 mt-2"><FormSwitch v-model="billing" @vnodeUpdated="emits('billing', billing)" /></span>
             <span :class="billing ? 'font-bold' : 'text-CoolGray font-bold' ">Yearly</span>
         </div>
         <div class="grid grid-cols-2 mt-10">

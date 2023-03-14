@@ -3,7 +3,7 @@ import NavBar from './components/NavBar.vue';
 import FirstStep from './components/Steps/FirstStep.vue';
 import SecondStep from './components/Steps/SecondStep.vue';
 import ThirdStep from './components/Steps/ThirdStep.vue';
-import { ref } from 'vue';
+import { ref, provide, type Ref } from 'vue';
 
 const currentStep = ref('FirstStep')
 
@@ -39,6 +39,11 @@ const navTexts = [
     step: 'FourthStep'
   },
 ]
+
+const billing = ref(false)
+
+provide('yearly', billing.value)
+
 </script>
 
 <template>
@@ -54,7 +59,7 @@ const navTexts = [
     </nav>
 
     <div class="m-auto mx-20">
-      <component :is="ThirdStep" @change="(e: string) => {currentStep = e}" />
+      <component :is="steps[currentStep]" @change="(e: string) => {currentStep = e}" @billing="(e: boolean) => billing = e" />
     </div>
   </main>
 </template>

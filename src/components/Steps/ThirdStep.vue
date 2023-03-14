@@ -2,15 +2,17 @@
 import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
-import { reactive, ref } from "vue";
+import { inject, reactive, ref } from "vue";
 
 const emits = defineEmits<{
   (e: "change", value: string): void
 }>();
 
-const select = ref(false)
+const yearly = inject('yearly')
 
-const selectedAddOn: Array<string> = reactive([])
+console.log(yearly)
+
+const selectedAddOn: Array<string> = reactive(["Online Service","Larger Storage"])
 
 const addOns = reactive([
   {
@@ -18,21 +20,24 @@ const addOns = reactive([
     title: "Online Service" ,
     subtitle: "Access to multiplayer games" ,
     price: "+$1/mo",
-    select: false
+    yearlyPrice: "+$10/yr",
+    selected: true
   },
   {
     id: 2,
     title: "Larger Storage" ,
     subtitle: "Extra 1TB of cloud save" ,
     price: "+$2/mo",
-    select: false
+    yearlyPrice: "+$20/yr",
+    selected: true
   },
   {
     id: 3,
     title: "Customizable Profile" ,
     subtitle: "Custom theme on your profile" ,
     price: "+$2/mo",
-    select: false
+    yearlyPrice: "+$20/yr",
+    selected: false
   }
 ])
 </script>
@@ -49,7 +54,7 @@ const addOns = reactive([
       :title="addOn.title" 
       :subtitle="addOn.subtitle" 
       :price="addOn.price" 
-      v-model="addOn.select"
+      v-model="addOn.selected"
       @update-selected="(e) => {
           if(selectedAddOn.length > 0 && selectedAddOn.includes(e)) {
             selectedAddOn = selectedAddOn.filter((value) => value !== e)

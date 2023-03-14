@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const props = defineProps<{
     id: number,
     title: string
@@ -18,7 +16,6 @@ function input() {
   emits('update:modelValue', (<HTMLInputElement>document.getElementById(String(props.id))).checked)
   emits('updateSelected', props.title)
 }
-
 </script>
 
 <template>
