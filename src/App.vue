@@ -2,13 +2,15 @@
 import NavBar from './components/NavBar.vue';
 import FirstStep from './components/Steps/FirstStep.vue';
 import SecondStep from './components/Steps/SecondStep.vue';
+import ThirdStep from './components/Steps/ThirdStep.vue';
 import { ref } from 'vue';
 
 const currentStep = ref('FirstStep')
 
 const steps: any = {
   FirstStep,
-  SecondStep
+  SecondStep,
+  ThirdStep
 }
 
 const navTexts = [
@@ -52,7 +54,7 @@ const navTexts = [
     </nav>
 
     <div class="m-auto mx-20">
-      <component :is="steps[currentStep]" @change="(e: string) => {currentStep = e}" />
+      <component :is="ThirdStep" @change="(e: string) => {currentStep = e}" />
     </div>
   </main>
 </template>
