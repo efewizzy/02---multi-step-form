@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
 import FirstStep from './components/FirstStep.vue';
+import SecondStep from './components/SecondStep.vue';
 import { ref } from 'vue';
 
 const currentStep = ref('FirstStep')
 
 const steps: any = {
   FirstStep,
+  SecondStep
 }
 
 const navTexts = [
@@ -19,17 +21,20 @@ const navTexts = [
   {
     number: 2,
     title: 'Step 2',
-    subtitle: 'Select plan'
+    subtitle: 'Select plan',
+    step: 'SecondStep'
   },
   {
     number: 3,
     title: 'Step 3',
-    subtitle: 'Add-ons'
+    subtitle: 'Add-ons',
+    step: 'ThirdStep'
   },
   {
     number: 4,
     title: 'Step 4',
-    subtitle: 'Summary'
+    subtitle: 'Summary',
+    step: 'FourthStep'
   },
 ]
 
@@ -48,7 +53,9 @@ console.log(steps)
       />
     </nav>
 
-    <component :is="steps[currentStep]" />
+    <div class="m-auto mx-20">
+      <component :is="steps[currentStep]" @change="(e: string) => {currentStep = e}" />
+    </div>
   </main>
 </template>
 

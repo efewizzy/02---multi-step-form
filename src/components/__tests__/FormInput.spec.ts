@@ -2,7 +2,6 @@ import { describe, it, expect } from "vitest";
 
 import { mount } from "@vue/test-utils";
 import FormInput from '../FormInput.vue';
-import { title } from "process";
 
 describe('FormInput', () => {
     const wrapper = mount(FormInput, {
@@ -10,6 +9,7 @@ describe('FormInput', () => {
             title: 'Form Title',
             text: 'I am the Placeholder',
             type: 'text',
+            error: [],
             modelValue: '',
             'onUpdate:modelValue': (e: string) => {wrapper.setProps({modelValue: e})}
         }
