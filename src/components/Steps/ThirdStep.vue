@@ -2,15 +2,12 @@
 import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
-import { inject, reactive, ref } from "vue";
+import { reactive } from "vue";
+import { subscription } from "@/store/store";
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (e: "change", value: string): void
 }>();
-
-const yearly = inject('yearly')
-
-console.log(yearly)
 
 const selectedAddOn: Array<string> = reactive(["Online Service","Larger Storage"])
 
@@ -40,6 +37,24 @@ const addOns = reactive([
     selected: false
   }
 ])
+
+function submit() {
+  emit('change', 'FourthStep')
+  subscription.addOn = selectedAddOn
+  const price = () => {
+    selectedAddOn.forEach(element => {
+      for (let i = 0; i < addOns.length; i++) {
+        if (addOns[i].title === element && subscription.planType === 'Monthly') {
+          subscription.addOnPrice.push(addOns[i].price)
+        } else if (addOns[i].title === element && subscription.planType === 'Yearly') {
+          subscription.addOnPrice.push(addOns[i].yearlyPrice)
+        }
+      }
+    })
+  }
+  price()
+  console.log(subscription);
+}
 </script>
 
 <template>
@@ -53,7 +68,7 @@ const addOns = reactive([
       :id="addOn.id"
       :title="addOn.title" 
       :subtitle="addOn.subtitle" 
-      :price="addOn.price" 
+      :price="subscription.planType === 'Monthly' ? addOn.price : addOn.yearlyPrice " 
       v-model="addOn.selected"
       @update-selected="(e) => {
           if(selectedAddOn.length > 0 && selectedAddOn.includes(e)) {
@@ -65,13 +80,13 @@ const addOns = reactive([
       />
     <div class="grid grid-cols-2 mt-3">
       <FormButton
-        @click.prevent="emits('change', 'SecondStep')"
+        @click.prevent="emit('change', 'SecondStep')"
         class="justify-self-start"
         text="Go Back"
         :color="true"
       />
       <FormButton
-        @click.prevent="emits('change', 'FourthStep')"
+        @click.prevent="submit()"
         class="justify-self-end"
         text="Next Step"
       />

@@ -10,8 +10,6 @@ const props = defineProps<{
 const emit = defineEmits<{
     (e: "update:modelValue", value: any): void;
 }>()
-
-console.log(props.error)
 </script>
 
 <template>

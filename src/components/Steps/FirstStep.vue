@@ -5,6 +5,7 @@ import FormButton from '../FormButton.vue';
 import { ref, reactive } from 'vue';
 import {useVuelidate} from '@vuelidate/core';
 import { required, helpers, email, numeric } from '@vuelidate/validators';
+import { subscription } from '@/store/store';
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
@@ -33,12 +34,17 @@ details.email = v$.value.email.$model
 details.number = v$.value.number.$model
 
 const submit = () => {
+    v$.value.$touch()
     v$.value.$validate
     if(!v$.value.$error) {
+        emit('change', 'SecondStep')
+        subscription.name = details.name
+        subscription.email = details.email
+        subscription.number = details.number
         details.name = ''
         details.email = ''
         details.number = ''
-        emit('change', 'SecondStep')
+        console.log(subscription)
     }
     v$.value.$reset
 }

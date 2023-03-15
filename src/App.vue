@@ -3,14 +3,29 @@ import NavBar from './components/NavBar.vue';
 import FirstStep from './components/Steps/FirstStep.vue';
 import SecondStep from './components/Steps/SecondStep.vue';
 import ThirdStep from './components/Steps/ThirdStep.vue';
-import { ref, provide, type Ref } from 'vue';
+import FourthStep from './components/Steps/FourthStep.vue';
+import { ref, provide, reactive, type Ref, watch } from 'vue';
+import { subscription } from './store/store';
+
+subscription.name = ''
+subscription.email = ''
+subscription.number = ''
+subscription.plan = ''
+subscription.planPrice = ''
+subscription.planType = ''
+subscription.addOn = []
+subscription.addOnPrice = []
+subscription.totalBill = ''
+
+console.log(subscription)
 
 const currentStep = ref('FirstStep')
 
 const steps: any = {
   FirstStep,
   SecondStep,
-  ThirdStep
+  ThirdStep,
+  FourthStep
 }
 
 const navTexts = [
@@ -40,6 +55,12 @@ const navTexts = [
   },
 ]
 
+const test = reactive([''])
+
+watch(test, 
+  (test) => console.log(test)
+)
+
 const billing = ref(false)
 
 provide('yearly', billing.value)
@@ -59,7 +80,10 @@ provide('yearly', billing.value)
     </nav>
 
     <div class="m-auto mx-20">
-      <component :is="steps[currentStep]" @change="(e: string) => {currentStep = e}" @billing="(e: boolean) => billing = e" />
+      <component 
+        :is="steps[currentStep]" 
+        @change="(e: string) => currentStep = e" 
+      />
     </div>
   </main>
 </template>
