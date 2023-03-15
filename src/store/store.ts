@@ -13,10 +13,13 @@ const subscription = reactive({
 })
 
 const total = () => {
-    const totalPrice = subscription.planPrice.match(/\d/g)
+    let totalPrice = parseInt(subscription.planPrice.replace(/\D/g, ''))
     subscription.addOnPrice.forEach(price => {
-        const testPrice = price.match(/\d/g)
-    });
+        let testPrice = parseInt(price.replace(/\D/g, ''))
+        totalPrice += testPrice
+    })
+    console.log(totalPrice)
+    subscription.totalBill = `$${totalPrice}/${subscription.planType === 'Monthly' ? 'mo' : 'yr' }`
 }
 
 export {

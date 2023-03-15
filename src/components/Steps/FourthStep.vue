@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import PageTitle from '../PageTitle.vue';
 import FormButton from '../FormButton.vue';
-import { subscription } from '@/store/store';
+import { subscription, total } from '@/store/store';
 
 const emits = defineEmits<{
     (e: 'change', value: string): void
 }>()
 
+total()
 </script>
 
 <template>
     <PageTitle title="Finishing up" subtitle="Double-check everything looks OK before confirming." />
     <div class="bg-Magnolia p-5 pb-0 rounded-lg mb-3">
-        <div class="grid grid-cols-[4fr,1fr] mb-2">
+        <div class="grid grid-cols-[5fr,1fr] mb-2">
             <div>
                 <h5 class="text-lg font-bold">{{ subscription.plan }}({{ subscription.planType }})</h5>
                 <p class="text-CoolGray">Change</p>
@@ -29,9 +30,9 @@ const emits = defineEmits<{
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-[4fr,1fr] p-5">
-        <p class="text-CoolGray">Total (per month)</p>
-        <h5 class="text-PurplishBlue text-xl font-bold">+$12/mo</h5>
+    <div class="grid grid-cols-[5fr,1fr] p-5">
+        <p class="text-CoolGray">{{ `Total (per ${subscription.planType === 'Monthly' ? 'month' : 'year' })` }}</p>
+        <h5 class="text-PurplishBlue text-xl font-bold">{{ subscription.totalBill }}</h5>
     </div>
     <div class="grid grid-cols-2 mt-5">
         <FormButton @click.prevent="emits('change', 'ThirdStep')" class="justify-self-start" text="Go Back" :color="true" />

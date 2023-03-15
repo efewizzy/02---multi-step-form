@@ -43,10 +43,8 @@ function submit() {
         for (const plan of plans) {
             if (plan.title === selectedPlan.value && billing.value === false) {
                 subscription.planPrice = plan.price
-                console.log(plan.title, selectedPlan.value, plan.price, subscription.planPrice)
             } else if (plan.title === selectedPlan.value && billing.value === true) {
                 subscription.planPrice = plan.yearlyPrice
-                console.log(plan.title, selectedPlan.value, plan.yearlyPrice, subscription.planPrice)
             }
         }
     }

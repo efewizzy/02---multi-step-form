@@ -2,16 +2,16 @@
 import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
-import { reactive } from "vue";
+import { ref } from "vue";
 import { subscription } from "@/store/store";
 
 const emit = defineEmits<{
   (e: "change", value: string): void
 }>();
 
-const selectedAddOn: Array<string> = reactive(["Online Service","Larger Storage"])
+const selectedAddOn = ref(["Online Service","Larger Storage"])
 
-const addOns = reactive([
+const addOns = [
   {
     id: 1,
     title: "Online Service" ,
@@ -36,13 +36,15 @@ const addOns = reactive([
     yearlyPrice: "+$20/yr",
     selected: false
   }
-])
+]
 
 function submit() {
   emit('change', 'FourthStep')
-  subscription.addOn = selectedAddOn
+  console.log(selectedAddOn.value)
+  subscription.addOn = selectedAddOn.value
   const price = () => {
-    selectedAddOn.forEach(element => {
+    subscription.addOnPrice = []
+    selectedAddOn.value.forEach(element => {
       for (let i = 0; i < addOns.length; i++) {
         if (addOns[i].title === element && subscription.planType === 'Monthly') {
           subscription.addOnPrice.push(addOns[i].price)
@@ -78,6 +80,7 @@ function submit() {
           }
         }" 
       />
+      {{ selectedAddOn }}
     <div class="grid grid-cols-2 mt-3">
       <FormButton
         @click.prevent="emit('change', 'SecondStep')"
