@@ -4,6 +4,7 @@ import FirstStep from './components/Steps/FirstStep.vue';
 import SecondStep from './components/Steps/SecondStep.vue';
 import ThirdStep from './components/Steps/ThirdStep.vue';
 import FourthStep from './components/Steps/FourthStep.vue';
+import ConfirmPage from './components/Steps/ConfirmPage.vue';
 import { ref, provide, reactive, type Ref, watch } from 'vue';
 import { subscription } from './store/store';
 
@@ -25,7 +26,8 @@ const steps: any = {
   FirstStep,
   SecondStep,
   ThirdStep,
-  FourthStep
+  FourthStep,
+  ConfirmPage
 }
 
 const navTexts = [
@@ -51,7 +53,8 @@ const navTexts = [
     number: 4,
     title: 'Step 4',
     subtitle: 'Summary',
-    step: 'FourthStep'
+    step: 'FourthStep',
+    confirm: 'ConfirmPage'
   },
 ]
 
@@ -75,7 +78,7 @@ provide('yearly', billing.value)
         :number="text.number" 
         :title="text.title" 
         :subtitle="text.subtitle"
-        :currentStep="text.step === currentStep ? true : false "
+        :currentStep="text.step === currentStep || text.confirm === currentStep ? true : false "
       />
     </nav>
 

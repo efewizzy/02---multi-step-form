@@ -3,7 +3,7 @@ import PageTitle from '../PageTitle.vue';
 import FormButton from '../FormButton.vue';
 import { subscription, total } from '@/store/store';
 
-const emits = defineEmits<{
+const emit = defineEmits<{
     (e: 'change', value: string): void
 }>()
 
@@ -16,7 +16,7 @@ total()
         <div class="grid grid-cols-[5fr,1fr] mb-2">
             <div>
                 <h5 class="text-lg font-bold">{{ subscription.plan }}({{ subscription.planType }})</h5>
-                <p class="text-CoolGray">Change</p>
+                <p class="text-CoolGray underline cursor-pointer hover:text-PurplishBlue" @click="emit('change', 'SecondStep')">Change</p>
             </div>
             <p class="justify-self-end self-center text-lg font-bold">{{ subscription.planPrice }}</p>
         </div>
@@ -35,7 +35,7 @@ total()
         <h5 class="text-PurplishBlue text-xl font-bold">{{ subscription.totalBill }}</h5>
     </div>
     <div class="grid grid-cols-2 mt-5">
-        <FormButton @click.prevent="emits('change', 'ThirdStep')" class="justify-self-start" text="Go Back" :color="true" />
-        <FormButton @click.prevent="emits('change', '')" class="justify-self-end" text="Confirm" />
+        <FormButton @click.prevent="emit('change', 'ThirdStep')" class="justify-self-start" text="Go Back" :color="true" />
+        <FormButton @click.prevent="emit('change', 'ConfirmPage')" class="justify-self-end" text="Confirm" />
     </div>
 </template>
