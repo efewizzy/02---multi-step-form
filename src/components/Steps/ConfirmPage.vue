@@ -4,7 +4,7 @@ import PageTitle from '../PageTitle.vue';
 
 <template>
     <div class="grid justify-items-center max-w-md">
-        <img src="assets/icon-thank-you.svg" alt="Check Mark Icon" class="">
+        <img src="/assets/icon-thank-you.svg" alt="Check Mark Icon" class="">
         <PageTitle 
             class="grid justify-items-center text-center"
             title="Thank you!" 
