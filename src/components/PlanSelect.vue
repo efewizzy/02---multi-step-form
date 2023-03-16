@@ -16,12 +16,14 @@ const emits = defineEmits<{
 <template>
     <button 
         @click.prevent="emits('update:modelValue', title)"
-        class="p-3 mr-4 border rounded-lg text-left w-36"
+        class="p-3 lg:mr-4 mb-3 border rounded-lg text-left lg:w-36 w-full flex flex-row items-center lg:block"
         :class="modelValue === title ? 'border-PurplishBlue bg-Magnolia' : 'border-LightGray'"
     >
-        <span><img :src="icon" alt="Arcade Icon" class="mt-2 mb-10"></span>
-        <h5 class="font-bold text-xl">{{title}}</h5>
-        <p data-type="test-price" class="text-CoolGray">{{yearly ? yearlyPrice : price}}</p>
-        <p data-type="test-yearly" v-if="yearly" class="text-sm">2 months free</p>
+        <span><img :src="icon" :alt="title + ` Icon`" class="lg:mt-2 lg:mb-10 mr-3"></span>
+        <div>
+            <h5 class="font-bold lg:text-xl">{{title}}</h5>
+            <p data-type="test-price" class="text-CoolGray">{{yearly ? yearlyPrice : price}}</p>
+            <p data-type="test-yearly" v-if="yearly" class="text-xs lg:text-sm">2 months free</p>
+        </div>
     </button>
 </template>

@@ -14,14 +14,14 @@ const emit = defineEmits<{
 
 <template>
     <div class="grid grid-cols-2">
-        <h5 class="mb-2 text-sm">{{ title }}</h5>
+        <h5 class="lg:mb-2 text-sm">{{ title }}</h5>
         <p v-if="error.length > 0" v-for="err in error" class="justify-self-end text-StrawberryRed font-bold" >
            {{ err.$message }}
         </p>
     </div>
     <input :type="type" :placeholder="text" :value="modelValue"
         @input="emit('update:modelValue', (<HTMLTextAreaElement>$event.target).value)"
-        class="p-3 mb-5 border border-LightGray rounded-lg w-full  focus:outline-none cursor-pointer font-bold" 
+        class="p-3 mb-5 border border-LightGray rounded-sm lg:rounded-lg w-full  focus:outline-none cursor-pointer font-bold" 
         :class="error.length > 0 ? 'focus:border-StrawberryRed border-StrawberryRed' : 'focus:border-PurplishBlue'"
     />
 </template>

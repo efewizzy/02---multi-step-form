@@ -1,4 +1,15 @@
-import { reactive } from "vue"
+import { reactive, ref } from "vue"
+
+const MOBILE_BREAKPOINT = 1024; // tailwind: lg
+
+const width = ref(document.body.offsetWidth)
+
+const desktopView = ref(width.value >= MOBILE_BREAKPOINT)
+
+window.addEventListener("resize", function () {
+    width.value = this.document.body.offsetWidth;
+    desktopView.value = width.value >= MOBILE_BREAKPOINT
+})
 
 const subscription = reactive({
     name: '',
@@ -24,5 +35,6 @@ const total = () => {
 
 export {
     subscription,
-    total
+    total,
+    desktopView
 }

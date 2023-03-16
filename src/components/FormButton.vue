@@ -7,7 +7,7 @@ const props = defineProps<{
 
 <template>
     <button 
-        class="p-3 px-6 mt-16 rounded-lg hover:bg-primary"
+        class="p-3 px-6 lg:mt-16 rounded-lg hover:bg-primary"
         :class="color ? 'text-CoolGray bg-none hover:text-MarineBlue' : 'text-White bg-MarineBlue'"
     >
         {{ text }}

@@ -5,7 +5,7 @@ import FormButton from '../FormButton.vue';
 import { ref, reactive } from 'vue';
 import {useVuelidate} from '@vuelidate/core';
 import { required, helpers, email, numeric } from '@vuelidate/validators';
-import { subscription } from '@/store/store';
+import { subscription, desktopView } from '@/store/store';
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
@@ -74,6 +74,6 @@ const submit = () => {
                 v-model="v$.number.$model" 
                 :error="v$.number.$errors" 
             />
-            <FormButton class="justify-self-end" text="Next Step" />
+            <FormButton v-if="desktopView" class="justify-self-end" text="Next Step" />
         </form>
 </template>

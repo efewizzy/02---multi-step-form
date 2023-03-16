@@ -4,7 +4,7 @@ import FormButton from '../FormButton.vue';
 import FormSwitch from '../FormSwitch.vue';
 import PageTitle from '../PageTitle.vue';
 import PlanSelect from '../PlanSelect.vue';
-import { subscription } from '@/store/store';
+import { desktopView, subscription } from '@/store/store';
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
@@ -64,7 +64,7 @@ function submit() {
 <template>
     <PageTitle title="Select your plan" subtitle="You have the option of monthly or yearly billing." />
     <form action="">
-        <div class="flex flex-row">
+        <div class="flex lg:flex-row flex-col">
             <PlanSelect 
                 v-for="plan in plans"
                 :title="plan.title" 
@@ -75,12 +75,12 @@ function submit() {
                 v-model="selectedPlan"
             />
         </div>
-        <div class="mt-10 p-2 flex flex-row justify-center items-center bg-Magnolia">
+        <div class="mt-3 lg:mt-10 p-2 flex flex-row justify-center items-center bg-Magnolia">
             <span :class="billing ? 'text-CoolGray font-bold' : 'font-bold' ">Monthly</span>
             <span class="mx-5 mt-2"><FormSwitch v-model="billing"/></span>
             <span :class="billing ? 'font-bold' : 'text-CoolGray font-bold' ">Yearly</span>
         </div>
-        <div class="grid grid-cols-2 mt-10">
+        <div v-if="desktopView" class="grid grid-cols-2 mt-10">
             <FormButton @click.prevent="emit('change', 'FirstStep')" class="justify-self-start" text="Go Back" :color="true" />
             <FormButton @click.prevent="submit()" class="justify-self-end" text="Next Step" />
         </div>

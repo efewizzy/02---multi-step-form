@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageTitle from '../PageTitle.vue';
 import FormButton from '../FormButton.vue';
-import { subscription, total } from '@/store/store';
+import { desktopView, subscription, total } from '@/store/store';
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
@@ -34,7 +34,7 @@ total()
         <p class="text-CoolGray">{{ `Total (per ${subscription.planType === 'Monthly' ? 'month' : 'year' })` }}</p>
         <h5 class="text-PurplishBlue text-xl font-bold">{{ subscription.totalBill }}</h5>
     </div>
-    <div class="grid grid-cols-2 mt-5">
+    <div v-if="desktopView" class="grid grid-cols-2 mt-5">
         <FormButton @click.prevent="emit('change', 'ThirdStep')" class="justify-self-start" text="Go Back" :color="true" />
         <FormButton @click.prevent="emit('change', 'ConfirmPage')" class="justify-self-end" text="Confirm" />
     </div>

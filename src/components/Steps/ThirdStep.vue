@@ -3,7 +3,7 @@ import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
 import { ref } from "vue";
-import { subscription } from "@/store/store";
+import { desktopView, subscription } from "@/store/store";
 
 const emit = defineEmits<{
   (e: "change", value: string): void
@@ -80,8 +80,7 @@ function submit() {
           }
         }" 
       />
-      {{ selectedAddOn }}
-    <div class="grid grid-cols-2 mt-3">
+    <div v-if="desktopView" class="grid grid-cols-2 mt-3">
       <FormButton
         @click.prevent="emit('change', 'SecondStep')"
         class="justify-self-start"
