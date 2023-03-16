@@ -2,7 +2,7 @@
 import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { desktopView, subscription } from "@/store/store";
 
 const emit = defineEmits<{
@@ -11,7 +11,7 @@ const emit = defineEmits<{
 
 const selectedAddOn = ref(["Online Service","Larger Storage"])
 
-const addOns = [
+const addOns = reactive([
   {
     id: 1,
     title: "Online Service" ,
@@ -36,11 +36,10 @@ const addOns = [
     yearlyPrice: "+$20/yr",
     selected: false
   }
-]
+])
 
 function submit() {
   emit('change', 'FourthStep')
-  console.log(selectedAddOn.value)
   subscription.addOn = selectedAddOn.value
   const price = () => {
     subscription.addOnPrice = []
@@ -55,7 +54,6 @@ function submit() {
     })
   }
   price()
-  console.log(subscription);
 }
 </script>
 

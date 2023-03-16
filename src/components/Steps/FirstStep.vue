@@ -2,9 +2,9 @@
 import PageTitle from '../PageTitle.vue';
 import FormInput from '../FormInput.vue';
 import FormButton from '../FormButton.vue';
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import {useVuelidate} from '@vuelidate/core';
-import { required, helpers, email, numeric } from '@vuelidate/validators';
+import { required, helpers, email } from '@vuelidate/validators';
 import { subscription, desktopView } from '@/store/store';
 
 const emit = defineEmits<{
@@ -12,8 +12,6 @@ const emit = defineEmits<{
 }>()
 
 const customRequired = { required: helpers.withMessage('This field is required', required) }
-
-const name = ref('')
 
 const details = reactive({
     name: '',

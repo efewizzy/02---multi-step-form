@@ -8,14 +8,14 @@ const props = defineProps<{
     modelValue: string
 }>()
 
-const emits = defineEmits<{
+const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void
 }>()
 </script>
 
 <template>
     <button 
-        @click.prevent="emits('update:modelValue', title)"
+        @click.prevent="emit('update:modelValue', title)"
         class="p-3 lg:mr-4 mb-3 border rounded-lg text-left lg:w-36 w-full flex flex-row items-center lg:block"
         :class="modelValue === title ? 'border-PurplishBlue bg-Magnolia' : 'border-LightGray'"
     >

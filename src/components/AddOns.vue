@@ -7,14 +7,14 @@ const props = defineProps<{
     modelValue: boolean
 }>()
 
-const emits = defineEmits<{
+const emit = defineEmits<{
     (e: 'update:modelValue', value: boolean): void
     (e: 'updateSelected', value: string): void
 }>()
 
-function input() {
-  emits('update:modelValue', (<HTMLInputElement>document.getElementById(String(props.id))).checked)
-  emits('updateSelected', props.title)
+function update(e: boolean) {
+  emit('update:modelValue', e)
+  emit('updateSelected', props.title)
 }
 </script>
 
@@ -27,7 +27,7 @@ function input() {
         type="checkbox"
         :id="String(id)"
         :checked="modelValue"
-        @change="input()"
+        @change="update((<HTMLInputElement>$event.target).checked)"
         class="appearance-none grid cursor-pointer place-items-center justify-self-start w-5 h-5 border 
             border-LightGray rounded-md before:w-2.5 before:h-2.5 before:shadow-White 
             before:bg-White before:inset-full before:absolute before:top-1 before:left-1 before:scale-0 
@@ -35,9 +35,9 @@ function input() {
       />
       <div class="-ml-3">
         <h5 class="font-bold">{{ title }}</h5>
-        <p class="text-CoolGray text-xs lg:text-base">{{ subtitle }}</p>
+        <p data-type="test-subtitle" class="text-CoolGray text-xs lg:text-base">{{ subtitle }}</p>
       </div>
-      <p class="justify-self-end text-PurplishBlue text-xs lg:text-base">{{ price }}</p>
+      <p data-type="test-price" class="justify-self-end text-PurplishBlue text-xs lg:text-base">{{ price }}</p>
     </label>
 </template>
 

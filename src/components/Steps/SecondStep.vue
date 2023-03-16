@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref } from 'vue';
+import {  ref } from 'vue';
 import FormButton from '../FormButton.vue';
 import FormSwitch from '../FormSwitch.vue';
 import PageTitle from '../PageTitle.vue';
@@ -57,7 +57,6 @@ function submit() {
     }
     price()
     type()
-    console.log(subscription);
 }
 </script>
 
