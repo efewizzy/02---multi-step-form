@@ -29,7 +29,6 @@ const total = () => {
         let testPrice = parseInt(price.replace(/\D/g, ''))
         totalPrice += testPrice
     })
-    console.log(totalPrice)
     subscription.totalBill = `$${totalPrice}/${subscription.planType === 'Monthly' ? 'mo' : 'yr' }`
 }
 

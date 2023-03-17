@@ -78,8 +78,6 @@ const back = () => {
     currentStep.value = 'FirstStep'
   }
 }
-
-console.log(desktopView.value, document.body.offsetWidth)
 </script>
 
 <template>
@@ -103,8 +101,8 @@ console.log(desktopView.value, document.body.offsetWidth)
     </div>
 
     <div v-if="!desktopView" class="bg-White grid fixed bottom-0 p-3 w-full h-max" :class="currentStep !== 'FirstStep' ? 'grid-cols-2' : 'grid-cols-1'">
-            <FormButton v-show="currentStep !== 'FirstStep'" @click.prevent="back()" class="justify-self-start" text="Go Back" :color="true" />
-            <FormButton @click.prevent="next()" class="justify-self-end" text="Next Step" />
+            <FormButton v-show="currentStep !== 'FirstStep' && currentStep !== 'ConfirmPage'" @click.prevent="back()" class="justify-self-start" text="Go Back" :color="true" />
+            <FormButton v-show="currentStep !== 'ConfirmPage'" @click.prevent="next()" class="justify-self-end" text="Next Step" />
         </div>
   </main>
 </template>

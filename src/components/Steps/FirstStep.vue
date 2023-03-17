@@ -50,7 +50,7 @@ const submit = () => {
 
 <template>
         <PageTitle title="Personal Info" subtitle="Please provide your name, email address, and phone number" />
-        <form action="" @submit.prevent="submit()" class="grid">
+        <form @submit.prevent="submit()" class="grid">
             <FormInput 
                 title="Name" 
                 type="text" 
