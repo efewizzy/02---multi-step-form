@@ -2,12 +2,16 @@
 import PageTitle from "../PageTitle.vue";
 import FormButton from "../FormButton.vue";
 import AddOns from "../AddOns.vue";
-import { ref, reactive } from "vue";
+import { ref, reactive, watch } from "vue";
 import { desktopView, subscription } from "@/store/store";
 
 const emit = defineEmits<{
   (e: "change", value: string): void
 }>();
+
+const props = defineProps<{
+    next: boolean
+}>()
 
 const selectedAddOn = ref(["Online Service","Larger Storage"])
 
@@ -55,6 +59,8 @@ function submit() {
   }
   price()
 }
+
+watch(() => props.next, (current) => current ? submit() : '')
 </script>
 
 <template>

@@ -2,13 +2,17 @@
 import PageTitle from '../PageTitle.vue';
 import FormInput from '../FormInput.vue';
 import FormButton from '../FormButton.vue';
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import {useVuelidate} from '@vuelidate/core';
 import { required, helpers, email } from '@vuelidate/validators';
 import { subscription, desktopView } from '@/store/store';
 
 const emit = defineEmits<{
     (e: 'change', value: string): void
+}>()
+
+const props = defineProps<{
+    next: boolean
 }>()
 
 const customRequired = { required: helpers.withMessage('This field is required', required) }
@@ -46,6 +50,8 @@ const submit = () => {
     }
     v$.value.$reset
 }
+
+watch(() => props.next, (current) => current ? submit() : '')
 </script>
 
 <template>

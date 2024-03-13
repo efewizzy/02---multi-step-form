@@ -21,6 +21,8 @@ subscription.totalBill = ''
 
 const currentStep = ref('FirstStep')
 
+const isNext = ref(false)
+
 const steps: any = {
   FirstStep,
   SecondStep,
@@ -59,14 +61,15 @@ const navTexts = [
 
 const next = () => {
   if(currentStep.value === 'FirstStep') {
-    currentStep.value = 'SecondStep'
+    isNext.value = true
   } else if (currentStep.value === 'SecondStep') {
-    currentStep.value = 'ThirdStep'
+    isNext.value = true
   } else if (currentStep.value === 'ThirdStep') {
-    currentStep.value = 'FourthStep'
+    isNext.value = true
   } else if (currentStep.value === 'FourthStep') {
     currentStep.value = 'ConfirmPage'
   }
+  setTimeout(() => isNext.value = false, 0)
 }
 
 const back = () => {
@@ -96,6 +99,7 @@ const back = () => {
     <div class="lg:m-auto lg:mx-20 lg:p-0" :class="desktopView ? '' : '-mt-20 mx-5 p-5 pt-2 h-max bg-White rounded-lg shadow-lg' ">
       <component 
         :is="steps[currentStep]"
+        :next="isNext"
         @change="(e: string) => currentStep = e" 
       />
     </div>

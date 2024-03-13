@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {  ref } from 'vue';
+import {  ref, watch } from 'vue';
 import FormButton from '../FormButton.vue';
 import FormSwitch from '../FormSwitch.vue';
 import PageTitle from '../PageTitle.vue';
@@ -9,6 +9,10 @@ import { desktopView, subscription } from '@/store/store';
 const emit = defineEmits<{
     (e: 'change', value: string): void
     (e: 'billing', value: boolean): void
+}>()
+
+const props = defineProps<{
+    next: boolean
 }>()
 
 const selectedPlan = ref('Arcade')
@@ -58,6 +62,8 @@ function submit() {
     price()
     type()
 }
+
+watch(() => props.next, (current) => current ? submit() : '')
 </script>
 
 <template>
